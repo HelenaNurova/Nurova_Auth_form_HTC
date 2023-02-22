@@ -1,4 +1,4 @@
-﻿/* Стиль всех полей ввода */
+/* Стиль всех полей ввода */
 input {
     width: 40%;
     padding: 12px;
@@ -18,7 +18,6 @@ input {
 /* Окно сообщения отображается, когда пользователь нажимает на поле пароля */
 #message {
     display: none;
-    background: #f1f1f1;
     color: #000;
     position: relative;
     padding: 20px;
@@ -51,3 +50,11 @@ input {
     left: -35px;
     content: "✖";
 }
+
+
+.footer {
+    padding: 20px;  
+    background: #ddd;     /* Серый фон */
+}
+
+

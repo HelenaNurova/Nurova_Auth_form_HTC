@@ -1,4 +1,9 @@
-﻿﻿<!DOCTYPE html>
+﻿<!-- - Внизу необходимо предусмотреть часы, которые показывают текущее время, дату и день недели.
+- Также необходимо сделать проверку на браузер IE. При заходе с него пользователю должно выводиться сообщение о том, что он пользуется не тем браузером. -->
+
+
+
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -6,14 +11,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Форма авторизации</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="script.js"></script>
+    
+    <!--Проверка браузера -->
+            <script>
+        function isInternetExplorer() {
+            return window.navigator.userAgent.indexOf('MSIE ') > -1 || window.navigator.userAgent.indexOf('Trident/') > -1;
+        }
+        console.log(isInternetExplorer());
+
+        if (isInternetExplorer() === false) {
+            alert('Ваш браузер не IE');
+        } else {
+            alert('Ваш браузер IE');
+        }
+    </script>
 
 </head>
 
 <body>
-
     <div class="container">
-
+       
         <form action="#0" method="post">
+           
             <h2>Авторизация</h2>
             <br>
             <label for="email"> Email:</label>
@@ -23,9 +43,13 @@
             <label for="psw">Пароль:</label>
             <br>
             <input type="password" id="psw" name="psw" pattern="(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{6,}" title="Длина пароля от 6 символов, обязательны одна заглавная и одна строчная буквы латинского алфавита, цифра и спецсимвол." placeholder="Пароль" required>
-
+            <br>
+            <label for="phone">Телефон:</label>
+            <br>
+            <input id="phone" type="text" placeholder="Телефон" required>            
             <br>
             <input type="submit" value="Войти">
+
         </form>
     </div>
 
@@ -37,82 +61,19 @@
         <p id="symbol" class="invalid"><b>Специальные символы (!@#$%^&*)</b></p>
         <p id="length" class="invalid">Минимум <b>6 символов</b></p>
     </div>
+    
+    <script src="script.js"></script>
 
-    <script>
-        var myInput = document.getElementById("psw");
-        var letter = document.getElementById("letter");
-        var capital = document.getElementById("capital");
-        var number = document.getElementById("number");
-        var symbol = document.getElementById("symbol");
-        var length = document.getElementById("length");
+    <div class="footer">
+        <p id="time"></p>
 
-        // Когда пользователь нажимает на поле пароль, появляется окно сообщения
+        <script>
+            var d = new Date();
+            d.setDate(15);
+            document.getElementById("time").innerHTML = d;
+        </script>
 
-        myInput.onfocus = function() {
-            document.getElementById("message").style.display = "block";
-        }
-
-        // Когда пользователь щелкает за пределами поля пароля, скройте окно сообщения
-
-        myInput.onblur = function() {
-            document.getElementById("message").style.display = "none";
-        }
-
-        // Когда пользователь начинает вводить что-то в поле пароля
-
-        myInput.onkeyup = function() {
-
-            // Проверка строчных букв
-            var lowerCaseLetters = /[a-z]/g;
-            if (myInput.value.match(lowerCaseLetters)) {
-                letter.classList.remove("invalid");
-                letter.classList.add("valid");
-            } else {
-                letter.classList.remove("valid");
-                letter.classList.add("invalid");
-            }
-
-            // Проверка заглавных букв
-            var upperCaseLetters = /[A-Z]/g;
-            if (myInput.value.match(upperCaseLetters)) {
-                capital.classList.remove("invalid");
-                capital.classList.add("valid");
-            } else {
-                capital.classList.remove("valid");
-                capital.classList.add("invalid");
-            }
-
-            // Проверка чисел
-            var numbers = /[0-9]/g;
-            if (myInput.value.match(numbers)) {
-                number.classList.remove("invalid");
-                number.classList.add("valid");
-            } else {
-                number.classList.remove("valid");
-                number.classList.add("invalid");
-            }
-
-            // Проверка спецсимволов
-            var symbols = /[!@#$%^&*]/g;
-            if (myInput.value.match(symbols)) {
-                symbol.classList.remove("invalid");
-                symbol.classList.add("valid");
-            } else {
-                symbol.classList.remove("valid");
-                symbol.classList.add("invalid");
-            }
-
-            // Проверка длины
-            if (myInput.value.length >= 6) {
-                length.classList.remove("invalid");
-                length.classList.add("valid");
-            } else {
-                length.classList.remove("valid");
-                length.classList.add("invalid");
-            }
-        }
-
-    </script>
+    </div>
 
 </body>
 
