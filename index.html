@@ -1,9 +1,4 @@
-﻿<!-- - Внизу необходимо предусмотреть часы, которые показывают текущее время, дату и день недели.
-- Также необходимо сделать проверку на браузер IE. При заходе с него пользователю должно выводиться сообщение о том, что он пользуется не тем браузером. -->
-
-
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
 <head>
@@ -12,9 +7,9 @@
     <title>Форма авторизации</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="script.js"></script>
-    
+
     <!--Проверка браузера -->
-            <script>
+    <script>
         function isInternetExplorer() {
             return window.navigator.userAgent.indexOf('MSIE ') > -1 || window.navigator.userAgent.indexOf('Trident/') > -1;
         }
@@ -25,15 +20,16 @@
         } else {
             alert('Ваш браузер IE');
         }
+
     </script>
 
 </head>
 
 <body>
     <div class="container">
-       
+
         <form action="#0" method="post">
-           
+
             <h2>Авторизация</h2>
             <br>
             <label for="email"> Email:</label>
@@ -46,7 +42,7 @@
             <br>
             <label for="phone">Телефон:</label>
             <br>
-            <input id="phone" type="text" placeholder="Телефон" required>            
+            <input id="phone" type="text" pattern="(\+7|8)?[\s\-]?\(?[0-9]{3}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$" title="Требуемый формат: 8хххххххххх, +7хххххххххх, 8(ххх)ххххххх, +7(ххх)ххххххх" placeholder="Телефон" required>
             <br>
             <input type="submit" value="Войти">
 
@@ -61,16 +57,14 @@
         <p id="symbol" class="invalid"><b>Специальные символы (!@#$%^&*)</b></p>
         <p id="length" class="invalid">Минимум <b>6 символов</b></p>
     </div>
-    
+
     <script src="script.js"></script>
 
     <div class="footer">
-        <p id="time"></p>
 
-        <script>
-            var d = new Date();
-            d.setDate(15);
-            document.getElementById("time").innerHTML = d;
+        <script type="text/javascript">
+            document.write(Date());
+
         </script>
 
     </div>
